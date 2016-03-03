@@ -27,12 +27,20 @@ app.post('/users', function(req, res, next) {
   res.status(200).json(users.push(req.body));
 }) // end get
 
-app.delete('users/:id', function(req, res, next) {
-  req.params.id;
+app.put('/users/:idx', function(req, res, next) {
+  var idx = parseInt(req.params.idx);
+  users[idx] = req.body;
+  users.status(200).json(users[idx]);
+}) // end put
+
+app.delete('users/:idx', function(req, res, next) {
+  users.splice(req.params.id, 1);
   var deletedUser = users.pop();
-  res.status(200).json(deletedUser);
+  res.status(204).json(deletedUser);
 })
 
 app.listen(3000, function() {
   console.log('listening on port 3000');
 }) // end listen
+
+'/users?name=Newman' // url query
